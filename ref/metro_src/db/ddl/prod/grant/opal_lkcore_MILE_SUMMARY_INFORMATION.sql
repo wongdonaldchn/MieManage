@@ -1,2 +1,0 @@
-GRANT SELECT ON opal_apldba.MILE_SUMMARY_INFORMATION TO opal_lkcore
-/

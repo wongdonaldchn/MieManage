@@ -1,6 +1,0 @@
-GRANT SELECT ON opal_apldba.MILE_HISTORY_INFORMATION TO opal_lkcore
-/
-GRANT INSERT ON opal_apldba.MILE_HISTORY_INFORMATION TO opal_lkcore
-/
-GRANT UPDATE ON opal_apldba.MILE_HISTORY_INFORMATION TO opal_lkcore
-/

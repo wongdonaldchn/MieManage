@@ -1,1 +1,0 @@
-GRANT CREATE TABLE TO opal_apldba;
