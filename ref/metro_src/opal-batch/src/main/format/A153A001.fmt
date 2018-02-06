@@ -1,0 +1,29 @@
+#------------------------------------------------------------------------------
+# エラーメールアドレス情報ファイルフォーマット定義
+#------------------------------------------------------------------------------
+#
+# 共通定義部
+#
+ file-type:                     "Variable"              # ファイルタイプ
+ text-encoding:                 "UTF-8"                 # 文字エンコーディング
+ field-separator:               ","                     # フィールド区切り文字
+ record-separator:              "\r\n"                  # 改行コード
+ requires-title:                true                    # タイトルレコードはあり
+ title-record-type-name:        "Header"                # タイトルレコード名称
+
+
+ [Header]                                               # ヘッダレコード
+ 1      header_mail_address      X    "メールアドレス"  # CSVヘッダ(メールアドレス)
+ 2      header_last_update_date  X    "最終更新日"      # CSVヘッダ(最終更新日)
+ 3      header_permanent_error   X    "永続的"          # CSVヘッダ(永続的エラー回数)
+ 4      header_temporary_error   X    "一時的"          # CSVヘッダ(一時的エラー回数)
+ 5      header_unknown_error     X    "原因不明"        # CSVヘッダ(原因不明エラー回数)
+ 6      header_summary           X    "合計"            # CSVヘッダ(合計)
+
+ [Data]                                                 # データレコード
+ 1      mail_address             X                      # メールアドレス
+ 2      last_update_date         X                      # メール配信日時
+ 3      permanent_error          X                      # メール配信エラー回数
+ 4      temporary_error          X                      # メール配信エラー回数
+ 5      unknown_error            X                      # メール配信エラー回数
+ 6      summary                  X                      # メール配信エラー回数

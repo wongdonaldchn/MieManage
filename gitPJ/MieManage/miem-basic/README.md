@@ -4,19 +4,16 @@
 |:-----------|:------------|
 |[![Build Status](https://travis-ci.org/nablarch/nablarch-biz-sample-all.svg?branch=master)](https://travis-ci.org/nablarch/nablarch-biz-sample-all)|[![Build Status](https://travis-ci.org/nablarch/nablarch-biz-sample-all.svg?branch=develop)](https://travis-ci.org/nablarch/nablarch-biz-sample-all)|
 
-## 依存ライブラリ
+## dependency library
 
-本モジュールのコンパイルまたはテストには、下記ライブラリを手動でローカルリポジトリへインストールする必要があります。
-
-ライブラリ          |ファイル名       |グループID     |アーティファクトID   |バージョン   |
+This library need to be installed manually:
+library             |file name        |group ID       |artifact ID          |version   |
 :-------------------|:----------------|:--------------|:--------------------|:------------|
 [kaptcha](https://code.google.com/archive/p/kaptcha/downloads) |kaptcha-2.3.2.jar |com.google.code |kaptcha              |2.3.2        |
 
-
-上記ライブラリは、下記コマンドでインストールしてください。
-
+Please use the command below:
 
 ```
-mvn install:install-file -Dfile=<ファイル名> -DgroupId=<グループID> -DartifactId=<アーティファクトID> -Dversion=<バージョン> -Dpackaging=jar
+mvn install:install-file -Dfile=kaptcha-2.3.2.jar -DgroupId=com.google.code -DartifactId=kaptcha -Dversion=2.3.2 -Dpackaging=jar
 ```
 

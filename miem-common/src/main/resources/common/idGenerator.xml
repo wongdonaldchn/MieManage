@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ID採番用の設定
+-->
+
+<component-configuration
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration ../component-configuration.xsd">
+
+<!--
+	Oracleシークンスを使用した採番クラスの設定
+ -->
+ <component name="oracleSequence" class="com.donald.miem.common.idgenerator.SequenceIdGeneratorSupport">
+ 	<property name="idTable">
+ 		<map>
+ 			<!-- アプリ会員登録受付ID（1～9999999999） -->
+ 			<entry key="1100" value="SQ_APL_MEM_RCPT_ID" />
+ 			<!-- アプリ会員ID（1～9999999999） -->
+ 			<entry key="1101" value="SQ_APPLICATION_MEMBER_ID" />
+ 			<!-- ログイン履歴ID（1～9999999999） -->
+ 			<entry key="1102" value="SQ_LOGIN_HISTORY_ID" />
+ 			<!-- ログイン情報再登録受付ID（1～9999999999） -->
+ 			<entry key="1103" value="SQ_LOGIN_INFO_REREGIST_RCPT_ID" />
+ 			<!-- メールアドレス変更受付ID（1～9999999999） -->
+ 			<entry key="1104" value="SQ_MAIL_ADDRESS_CHANGE_RCPT_ID" />
+ 			<!-- パートナー会員サービス管理ID（1～9999999999） -->
+ 			<entry key="1200" value="SQ_PARTNER_MEM_CTRL_ID" />
+ 			<!-- 家族会員サービス管理ID（1～9999999999） -->
+ 			<entry key="1201" value="SQ_FAMILY_MEM_CTRL_ID" />
+ 			<!-- マイル履歴ID（1～9999999999） -->
+ 			<entry key="1300" value="SQ_MILE_HISTORY_ID" />
+ 			<!-- マイル調整指示ID（1～9999999999） -->
+ 			<entry key="1301" value="SQ_MILE_ADJUST_INSTR_ID" />
+ 			<!-- 郵送受付ID（1～9999999999） -->
+ 			<entry key="1400" value="SQ_POST_RECEIPT_ID" />
+ 			<!-- プッシュ通知ID（1～9999999999） -->
+ 			<entry key="1501" value="SQ_PUSH_NOTICE_ID" />
+ 			<!-- メール個別配信ID（1～9999999999） -->
+ 			<entry key="1502" value="SQ_MAIL_LITE_DELIVER_ID" />
+ 			<!-- メール一括配信ID（1～9999999999） -->
+ 			<entry key="1503" value="SQ_MAIL_PACK_DELIVER_ID" />
+ 		</map>
+ 	</property>
+ </component>
+</component-configuration>

@@ -1,0 +1,2 @@
+GRANT CREATE SESSION TO opal_apltrn;
+GRANT CREATE TABLE TO opal_apltrn;

@@ -1,0 +1,20 @@
+ #-------------------------------------------------------------------------------
+ # エラーメールアドレス情報結果応答電文（業務エラー時）の業務データ部レイアウト定義
+ #-------------------------------------------------------------------------------
+ file-type:                     "Variable"          # ファイルタイプ
+ text-encoding:                 "UTF-8"             # 文字エンコーディング
+ field-separator:               ","                 # フィールド区切り文字
+ record-separator:              "\r\n"              # 改行コード
+ requires-title:                true                # タイトルレコードはあり
+ title-record-type-name:        "ErrorHeader"       # タイトルレコード名称
+
+
+ [ErrorHeader]                                               # エラーヘッダレコード
+ 1      header_code              N     "CODE"                # CSVヘッダ(API連携結果コード)
+ 2      header_status            N     "STATUS"              # CSVヘッダ(API連携結果ステータス)
+ 3      header_message           N     "MESSAGE"             # CSVヘッダ(API連携結果メッセージ)
+
+ [ErrorData]                                                 # エラーデータレコード
+ 1      code                     X                           # API連携結果コード
+ 2      status                   X                           # API連携結果ステータス
+ 3      message                  X                           # API連携結果メッセージ

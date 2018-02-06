@@ -1,0 +1,18 @@
+#------------------------------------------------------------------------------
+# 乗車マイルエラーファイルフォーマット定義
+#------------------------------------------------------------------------------
+#
+# 共通定義部
+#
+ file-type:                     "Variable"          # ファイルタイプ
+ text-encoding:                 "SHIFT-JIS"         # 文字エンコーディング
+ field-separator:               " "                 # フィールド区切り文字
+ record-separator:              "\r\n"              # 改行コード
+
+ [errorMap]                                         # 乗車マイルエラーレコード
+ 1         line                X                    # データレコードの行番号
+ 2         memberControlNumber X                    # 会員管理番号
+ 3         memrCtrlBrNum       X                    # 会員管理番号枝番
+ 4         objectYearMonth     X                    # 対象年月
+ 5         mileCategoryCode    X                    # マイル種別コード
+ 6         message             N                    # メッセージ

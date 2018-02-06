@@ -1,0 +1,90 @@
+<routes>
+  <!-- OP会員本人確認API -->
+  <post path="/v1/opMember/identify" to="ss111A.A111A011#confirmOpMemInfo" id="RA111A0110" />
+
+  <!-- OP会員情報取得API -->
+  <post path="/v1/opMember/search" to="ss111A.A111A021#getOpMemInfo" id="RA111A0210" />
+
+  <!-- アプリ会員一時登録API -->
+  <post path="/v1/appMember/preRegist" to="ss111A.A111A031#insertAplMemTempInfo" id="RA111A0310" />
+
+  <!-- アプリ会員登録API -->
+  <post path="/v1/appMember/regist" to="ss111A.A111A041#insertAplMemInfo" id="RA111A0410" />
+
+  <!-- アプリ会員ログインAPI -->
+  <post path="/v1/appMember/login" to="ss112A.A112A011#loginAppMemInfo" id="RA112A0110" />
+
+  <!-- アプリ会員情報取得API -->
+  <post path="/v1/appMember/search" to="ss113A.A113A011#getAplMenInfo" id="RA113A0110" />
+
+  <!-- アプリ会員情報更新API -->
+  <post path="/v1/appMember/update" to="ss113A.A113A021#updateAppMemInfo" id="RA113A0210" />
+
+  <!-- メールアドレス一時変更API -->
+  <post path="/v1/appMember/mailadress/preUpdate" to="ss113A.A113A031#changeMailAddressTemp" id="RA113A0310" />
+
+  <!-- メールアドレス変更API -->
+  <post path="/v1/appMember/mailadress/update" to="ss113A.A113A041#changeMailAddress" id="RA113A0410" />
+
+  <!-- OP認証API -->
+  <post path="/v1/appMember/opAuth" to="ss115A.A115A011#setOpAuthentication" id="RA115A0110" />
+
+  <!-- パスワード変更API -->
+  <post path="/v1/appMember/password/update" to="ss116A.A116A011#resetPassword" id="RA116A0110" />
+
+  <!-- ログインID・パスワード再登録API -->
+  <post path="/v1/appMember/loginInfo/reregist" to="ss116A.A116A021#reregistLoginIdPassword" id="RA116A0210" />
+
+  <!-- ログインID・パスワード一時登録API -->
+  <post path="/v1/appMember/loginInfo/preReregist" to="ss116A.A116A031#registLoginIdPasswordTemp" id="RA116A0310" />
+
+  <!-- アプリ会員本人確認API -->
+  <post path="/v1/appMember/identify" to="ss117A.A117A011#confirmAplMemInfo" id="RA117A0110" />
+
+  <!-- 家族会員サービス登録API -->
+  <post path="/v1/family/regist" to="ss121A.A121A021#insertFamilyMemInfo" id="RA121A0210" />
+
+  <!-- マイル履歴取得API -->
+  <post path="/v1/mile/history/search" to="ss132A.A132A021#getMileHistoryInfo" id="RA132A0210" />
+
+  <!-- マイル利用明細取得API -->
+  <post path="/v1/mile/statement/search" to="ss133A.A133A011#getMileUseDetailInfo" id="RA133A0110" />
+
+  <!-- マイル加算API -->
+  <post path="/v1/mile/add" to="ss134A.A134A011#addMile" id="RA134A0110" />
+
+  <!-- マイル減算API -->
+  <post path="/v1/mile/sub" to="ss134A.A134A021#subMile" id="RA134A0210" />
+
+  <!-- PiTaPa利用実績取得API -->
+  <post path="/v1/pitapa/utilizationResults/search" to="ss139A.A139A011#getPitapaUseRes" id="RA139A0110" />
+
+  <!-- 郵送情報取得API -->
+  <post path="/v1/postInfo/search" to="ss141A.A141A011#getPostInfo" id="RA141A0110" />
+
+  <!-- 郵送情報登録API -->
+  <post path="/v1/postInfo/regist" to="ss142A.A142A011#insertPostInfo" id="RA142A0110" />
+
+  <!-- マイル残高取得API -->
+  <post path="/v1/mile/balance/search" to="ss131A.A131A011#getMileBalanceInfo" id="RA131A0110" />
+
+  <!-- パートナー会員サービス登録API -->
+  <post path="/v1/partner/regist" to="ss123A.A123A011#insertPartnerMemServiceInfo" id="RA123A0110" />
+
+  <!-- パートナー会員サービス情報取得API -->
+  <post path="/v1/partner/search" to="ss123A.A123A021#getPartnerMemServiceInfo" id="RA123A0210" />
+
+  <!-- パートナー会員サービス更新API -->
+  <post path="/v1/partner/update" to="ss123A.A123A031#updatePartnerMemServiceInfo" id="RA123A0310" />
+
+  <!-- 乗車適用日登録API -->
+  <post path="/v1/entrainEffectDay/regist" to="ss125A.A125A011#insertRideApplyDate" id="RA125A0110" />
+
+  <!-- 乗車適用日参照API -->
+  <post path="/v1/entrainEffectDay/search" to="ss125A.A125A021#getRideApplyDate" id="RA125A0210" />
+
+  <!-- 乗車適用日選択API -->
+  <post path="/v1/entrainEffectDay/select" to="ss125A.A125A031#chooseRideApplyDate" id="RA125A0310" />
+
+  <match path="/:controller/:action/:id" />
+</routes>

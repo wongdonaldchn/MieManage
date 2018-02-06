@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component-configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <import file="rest-component-configuration.xml"/>
+
+  <import file="override_dev.xml"/>
+
+  <!-- 初期化が必要なコンポーネント -->
+  <component name="initializer" class="nablarch.core.repository.initialization.BasicApplicationInitializer">
+    <property name="initializeList">
+      <list>
+       <!-- パッケージマッピング -->
+        <component-ref name="packageMapping" />
+        <!-- コードのローダ -->
+        <component-ref name="codeLoader" />
+        <!-- コードのキャッシュ -->
+        <component-ref name="codeCache" />
+        <!-- message.xml:文字列リソースのキャッシュ -->
+        <component-ref name="stringResourceCache" />
+        <!-- override/idGenerator.xml:採番機能 -->
+        <component-ref name="oracleSequence" />
+      </list>
+    </property>
+  </component>
+
+</component-configuration>

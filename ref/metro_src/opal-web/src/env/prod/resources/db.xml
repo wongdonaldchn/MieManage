@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component-configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <!-- データベース設定 -->
+  <import file="nablarch/webui/db-for-webui.xml"/>
+
+  <!-- ダイアレクト設定 -->
+  <component name="dialect" class="nablarch.core.db.dialect.OracleDialect" />
+
+</component-configuration>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component-configuration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://tis.co.jp/nablarch/component-configuration"
+    xsi:schemaLocation="http://tis.co.jp/nablarch/component-configuration  /component-configuration.xsd">
+
+  <!-- テーブル定義 -->
+  <import file="nablarch/schema-config.xml" />
+
+  <!-- 精査に使用する文字集合定義 -->
+  <import file="common/charset-definition.xml" />
+
+  <!-- メッセージ定義 -->
+  <import file="common/message.xml"/>
+
+  <!-- 採番機能 -->
+  <import file="common/idGenerator.xml"/>
+
+  <!-- コード設定 -->
+  <import file="common/code.xml"/>
+
+  <component name="domainManager" class="jp.co.tis.opal.common.domain.DomainManagers"/>
+  <component name="constraintViolationConverterFactory" class="nablarch.core.validation.ee.ItemNamedConstraintViolationConverterFactory" />
+
+  <!-- 共通設定ファイル -->
+  <config-file file="common.config" />
+  <!-- バッチ設定ファイル -->
+  <config-file file="batch.config" />
+  <!-- バッチ設定ファイル -->
+  <config-file file="opalBatch.config" />
+  <!-- 業務共通設定ファイル -->
+  <config-file file="application/opal.config" />
+  <!-- 環境設定ファイル -->
+  <config-file file="env.config" />
+
+  <!-- 自動採番型を持たないRDBMSで、ユニバーサルDAOを使用するための設定 -->
+  <import file="nablarch/common/dao.xml" />
+  <!-- 日付 -->
+  <import file="nablarch/core/date.xml"/>
+
+  <!-- バッチ固有の設定読み込み -->
+  <!-- データベース設定-->
+  <import file="nablarch/batch/db-for-batch.xml" />
+  <import file="data-source.xml"/>
+
+  <!-- 個別トランザクション -->
+  <component name="update-mail-transaction" class="nablarch.core.db.transaction.SimpleDbTransactionManager">
+    <!-- connectionFactoryプロパティにConnectionFactory実装クラスを設定する -->
+    <property name="connectionFactory" ref="connectionFactory" />
+    <!-- transactionFactoryプロパティにTransactionFactory実装クラスを設定する -->
+    <property name="transactionFactory" ref="transactionFactory" />
+    <!-- トランザクションを識別するための名前を設定する -->
+    <property name="dbTransactionName" value="update-mail-transaction" />
+  </component>
+
+  <!-- リクエストID短縮抽出機能 -->
+  <component name="requestIdExtractor" class="nablarch.common.util.ShortRequestIdExtractor"/>
+
+  <!-- 常駐化ハンドラ -->
+  <component name="processResidentHandler" class="jp.co.tis.opal.batch.common.handler.OpalProcessResidentHandler">
+    <!-- データの監視間隔設定 -->
+    <property name="dataWatchInterval" value="${nablarch.fw.handler.ProcessResidentHandler.dataWatchInterval}" />
+    <!-- 特定回数設定 -->
+	<property name="retryCount" value="${nablarch.retryHandler.retryCount}" />
+  </component>
+
+  <!-- リクエストディスパッチハンドラ -->
+  <component name="requestPathJavaPackageMapping" class="nablarch.fw.handler.RequestPathJavaPackageMapping">
+    <property name="basePackage" value="${nablarch.commonProperty.basePackage}" />
+    <property name="immediate" value="false" />
+  </component>
+
+  <!-- トランザクションループ制御ハンドラ -->
+  <component name="loopHandler" class="nablarch.fw.handler.LoopHandler">
+    <property name="commitInterval" value="${nablarch.loopHandler.commitInterval}" />
+    <property name="transactionFactory" ref="transactionFactory" />
+  </component>
+
+  <!-- ファイルパス設置 -->
+  <import file="nablarch/batch/filepath-for-batch.xml" />
+  <!-- スレッドコンテキスト機能 -->
+  <import file="nablarch/batch/threadcontext-for-batch.xml" />
+  <!-- 処理停止機能 -->
+  <import file="nablarch/common/standalone/process-stop.xml" />
+  <!-- サービス提供可否判断機能 -->
+  <import file="nablarch/batch/service-availability-for-batch.xml"/>
+  <!-- プロセス多重起動防止機能 -->
+  <import file="nablarch/common/standalone/duplicate-process-check.xml"/>
+  <!-- コミットログ機能 -->
+  <import file="nablarch/common/standalone/commit-log.xml"/>
+  <!-- マルチスレッド実行制御機能 -->
+  <import file="nablarch/common/standalone/multi-thread.xml" />
+  <!-- プロセス常駐化機能 -->
+  <import file="nablarch/common/standalone/process-service.xml" />
+  <!-- データリード機能 -->
+  <import file="nablarch/batch/batch-data-read.xml" />
+
+  <!-- ハンドラキュー構成 -->
+  <list name="handlerQueue">
+    <!-- ステータスコード→プロセス終了コード変換ハンドラ -->
+    <component class="nablarch.fw.handler.StatusCodeConvertHandler" />
+
+    <!-- グローバルエラーハンドラ -->
+    <component class="nablarch.fw.handler.GlobalErrorHandler" />
+
+    <!-- スレッドコンテキスト変数管理ハンドラ(メインスレッド) -->
+    <component-ref name="threadContextHandler" />
+
+    <!-- プロセス多重起動防止ハンドラ -->
+    <component-ref name="duplicateProcessCheckHandler"/>
+
+    <!-- 常駐化ハンドラ -->
+    <component-ref name="processResidentHandler"/>
+
+    <!--処理停止ハンドラ-->
+    <component-ref name="processStopHandler" />
+
+    <!-- サービス提供可否チェックハンドラ -->
+    <component class="nablarch.common.availability.ServiceAvailabilityCheckHandler" />
+
+    <!-- 出力ファイル開放ハンドラ（FileRecordWriterの後処理を行う） -->
+    <component class="nablarch.common.io.FileRecordWriterDisposeHandler" />
+
+    <!-- データベース接続管理ハンドラ(業務初期処理・終端処理用) -->
+    <component-ref name="dbConnectionManagementHandler" />
+
+    <!-- トランザクション制御ハンドラ(業務初期処理・終端処理用) -->
+    <component-ref name="transactionManagementHandler" />
+
+    <!-- リクエストディスパッチハンドラ -->
+    <component-ref name="requestPathJavaPackageMapping" />
+
+    <!-- マルチスレッド実行制御ハンドラ -->
+    <component-ref name="multiThreadExecutionHandler" />
+
+    <!-- データベース接続管理ハンドラ -->
+    <component-ref name="dbConnectionManagementHandler" />
+
+    <!-- トランザクションループ制御ハンドラ -->
+    <component-ref name="loopHandler" />
+
+    <!-- データリードハンドラ -->
+    <component-ref name="dataReadHandler" />
+  </list>
+
+  <!-- HTTPメッセージング -->
+  <component name="messageSenderClient" class="jp.co.tis.opal.batch.common.fw.OpalPopinfoHttpMessagingClient" />
+
+  <!-- クルメル用HTTPClient -->
+  <component name="opalCurumeruHttpClient" class="jp.co.tis.opal.batch.common.fw.OpalCurumeruHttpClientImpl" />
+
+  <!-- 初期化が必要なコンポーネント -->
+  <component name="initializer"
+             class="nablarch.core.repository.initialization.BasicApplicationInitializer">
+    <property name="initializeList">
+      <list>
+        <!-- common/date.xml:業務日付コンポーネント -->
+        <component-ref name="businessDateProvider" />
+        <!-- common/code.xml:コードのローダ -->
+        <component-ref name="codeLoader" />
+        <!-- common/code.xml:コードのキャッシュ -->
+        <component-ref name="codeCache" />
+        <!-- message.xml:文字列リソースのキャッシュ -->
+        <component-ref name="stringResourceCache" />
+        <!-- batch/handler/processStop.xml:処理停止ハンドラ -->
+        <component-ref name="processStopHandler" />
+        <!-- batch/handler/duplicateProcessCheck:プロセス多重起動防止ハンドラ -->
+        <component-ref name="duplicateProcessChecker" />
+        <!-- サービス提供チェック -->
+        <component-ref name="serviceAvailability" />
+      </list>
+    </property>
+  </component>
+</component-configuration>

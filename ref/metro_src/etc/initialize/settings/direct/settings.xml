@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <localRepository>C:\opal\maven\repository</localRepository>
+
+  <pluginGroups />
+  <proxies />
+  <servers />
+  <mirrors />
+
+  <profiles>
+    <profile>
+      <id>opal</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>maven.seasar.org</id>
+          <name>The Seasar Foundation Maven2 Repository</name>
+          <url>http://maven.seasar.org/maven2</url>
+        </repository>
+        <repository>
+          <id>clojars.org</id>
+          <name>Clojars Maven Repository</name>
+          <url>https://clojars.org/repo</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>maven.seasar.org</id>
+          <name>The Seasar Foundation Maven2 Repository</name>
+          <url>http://maven.seasar.org/maven2</url>
+        </pluginRepository>
+        <pluginRepository>
+          <id>clojars.org</id>
+          <name>Clojars Maven Repository</name>
+          <url>https://clojars.org/repo</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+</settings>

@@ -1,0 +1,43 @@
+#------------------------------------------------------------------------------
+# パートナー乗車適用日情報ファイルフォーマット定義
+#------------------------------------------------------------------------------
+ file-type:                      "Fixed"           # ファイルタイプ
+ text-encoding:                  "SHIFT-JIS"       # 文字エンコーディング
+ record-separator:               "\n"              # 改行コード
+ record-length:                  100               # レコードの長さ
+
+ [Classifier]                                      # レコードタイプ識別フィールド定義
+ 1   recordKbn                   X(1)              # データ区分
+                                                   # 1：ヘッダー、2：パートナー乗車適用日情報レコード
+                                                   # 8：トレーラ、9：エンドレコード
+
+ [header]                                          # ヘッダレコード
+ recordKbn = "1"
+ 1   recordKbn                   X(1)   "1"        # レコード区分
+ 2   fileId                      X(8)   "A124A001" # ファイルID
+ 10  dataDate                    X(8)              # 処理日付
+ 18  dataTime                    X(6)              # 処理時刻
+ 24  ?ex_filler                  X(77)             # FILLER
+
+ [data]                                            # パートナー乗車適用日情報レコード
+ recordKbn = "2"
+ 1   recordKbn                   X(1)   "2"        # レコード区分
+ 2   getObjectYearMonth          X(6)              # 取得対象年月
+ 8   partnerRegistUserCtrlNum    X(10)             # パートナー登録者会員管理番号
+ 18  partnerRegistUserCtrlBrNum  X(3)              # パートナー登録者会員管理番号枝番
+ 21  partnerMemCtrlNum           X(10)             # パートナー会員管理番号
+ 31  partnerMemCtrlBrNum         X(3)              # パートナー会員管理番号枝番
+ 34  rideApplyDateCnt            X(2)              # 乗車適用日件数
+ 36  rideApplyDateInfo           X(62)             # 乗車適用日情報
+ 98  ?ex_filler                  X(3)              # FILLER
+
+ [trailer]                                         # トレーラレコード
+ recordKbn = "8"
+ 1   recordKbn                   X(1)   "8"        # レコード区分
+ 2   dataRecordCnt               X(8)              # データレコード数
+ 10  ?ex_filler                  X(91)             # FILLER
+
+ [end]                                             # エンドレコード
+ recordKbn = "9"
+ 1   recordKbn                   X(1)   "9"        # データ区分
+ 2   ?ex_filler                  X(99)             # FILLER

@@ -1,0 +1,2 @@
+CREATE ROLE role_apl;
+GRANT CREATE SESSION TO role_apl;
