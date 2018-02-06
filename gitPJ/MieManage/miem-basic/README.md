@@ -7,11 +7,10 @@
 ## dependency library
 
 This library need to be installed manually:
-library             |file name        |group ID       |artifact ID          |version   |
 
-:-------------------|:----------------|:--------------|:--------------------|:------------|
-
-[kaptcha](https://code.google.com/archive/p/kaptcha/downloads) |kaptcha-2.3.2.jar |com.google.code |kaptcha              |2.3.2        |
+|library             |file name        |group ID       |artifact ID          |version   |
+|:-------------------|:----------------|:--------------|:--------------------|:------------|
+|[kaptcha](https://code.google.com/archive/p/kaptcha/downloads) |kaptcha-2.3.2.jar |com.google.code |kaptcha              |2.3.2        |
 
 Please use the command below:
 
